@@ -44,17 +44,20 @@ class MainGUI:
         self.OutputLabel.pack(side=LEFT)
         Button(OutputFrame, text='지도', command=self.ShowMap, font=self.font).pack(side=LEFT)  # TODO: text 없애고, 지도 이미지 추가
 
-        HorseListFrame = Frame(self.window)
+        HorseListFrame = Frame(self.window, width=400)
         HorseListFrame.pack()
-        HorseScrollbar = Scrollbar(HorseListFrame)
-        self.HorseListBox = Listbox(HorseListFrame, font= self.font, height=5, yscrollcommand=HorseScrollbar.set)
-        self.HorseListBox.pack(side=LEFT, anchor=NW)
-        HorseScrollbar.pack(side=LEFT, anchor= NW, fill=Y)
+        HorseScrollbar = Scrollbar(HorseListFrame, orient=VERTICAL)
+        self.HorseListBox = Listbox(HorseListFrame, font= self.font, height=5)
+        self.HorseListBox.pack(side=LEFT)
+        HorseScrollbar.pack(side=RIGHT, fill=Y)
+
+        self.HorseListBox.config(yscrollcommand=HorseScrollbar.set)
         HorseScrollbar.config(command=self.HorseListBox.yview)
+        
 
         for i in range(10):
             self.HorseListBox.insert(i, str(i+1)+'번 우승마')
-        
+
         self.window.mainloop()
 
 MainGUI()
