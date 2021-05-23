@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import font
-from typing import ContextManager
+
+#TODO: 지도 버튼 위치 변경, 텔레그램 버튼, 메일 버튼, 하단 이미지 추가
 
 class MainGUI:
     def Search(self):   # TODO: OpenAPI 연동하여 검색한 정보를 불러오는 기능 구현
