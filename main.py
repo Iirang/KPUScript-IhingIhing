@@ -44,19 +44,29 @@ class MainGUI:
         self.OutputLabel.pack(side=LEFT)
         Button(OutputFrame, text='지도', command=self.ShowMap, font=self.font).pack(side=LEFT)  # TODO: text 없애고, 지도 이미지 추가
 
-        HorseListFrame = Frame(self.window, width=400)
-        HorseListFrame.pack()
-        HorseScrollbar = Scrollbar(HorseListFrame, orient=VERTICAL)
-        self.HorseListBox = Listbox(HorseListFrame, font= self.font, height=5)
-        self.HorseListBox.pack(side=LEFT)
-        HorseScrollbar.pack(side=RIGHT, fill=Y)
+        HorseFrame = Frame(self.window)
+        HorseFrame.pack()
+        HorseScrollbar = Scrollbar(HorseFrame, orient=VERTICAL)
+        self.HorseListbox = Listbox(HorseFrame, font= self.font, height=8)  # 선택하면 우측 Listbox에 정보 출력
+        self.HorseListbox.pack(side=LEFT)
+        HorseScrollbar.pack(side=LEFT, fill=Y)
 
-        self.HorseListBox.config(yscrollcommand=HorseScrollbar.set)
-        HorseScrollbar.config(command=self.HorseListBox.yview)
-        
-
+        self.HorseListbox.config(yscrollcommand=HorseScrollbar.set)
+        HorseScrollbar.config(command=self.HorseListbox.yview)
+    
         for i in range(10):
-            self.HorseListBox.insert(i, str(i+1)+'번 우승마')
+            self.HorseListbox.insert(i, str(i+1)+'번 우승마')
+        
+        HorseInfoScrollbar = Scrollbar(HorseFrame, orient=VERTICAL)
+        self.HorseInfoListbox = Listbox(HorseFrame, font=self.font, height=8)
+        self.HorseInfoListbox.pack(padx=(10, 0), side=LEFT)
+        HorseInfoScrollbar.pack(side=LEFT, fill=Y)
+
+        self.HorseInfoListbox.config(yscrollcommand=HorseScrollbar.set)
+        HorseInfoScrollbar.config(command=self.HorseInfoListbox.yview)
+
+        self.canvas = Canvas(HorseFrame, width=220, height=235, bg='white') # 그래프를 출력할 canvas
+        self.canvas.pack(padx=(10, 0), side=LEFT)                           # TODO: 승률 비교 그래프 그리는 함수 추가
 
         self.window.mainloop()
 
