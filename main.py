@@ -17,9 +17,9 @@ class MainGUI:
         self.LogoImage = PhotoImage(file='Resource/KPU.gif')    # TODO: LogoImage 수정
         self.font = font.Font(size=15, weight='bold', family='맑은 고딕')
 
-        LogoFrame = Frame(self.window, width=800, height=50)
+        LogoFrame = Frame(self.window, width=800, height=100)
         LogoFrame.pack()
-        Label(LogoFrame, image=self.LogoImage, height=50).pack()
+        Label(LogoFrame, image=self.LogoImage, height=100).pack()
 
         self.SearchLabel = []   # 0: 지역, 1: 년도, 2: 월, 3: 일, 4: 경주 번호
         self.SearchEntry = [] 
@@ -38,14 +38,23 @@ class MainGUI:
             self.SearchLabel[i].pack(side=LEFT)
         Button(SearchFrame, text='검색', command=self.Search, font=self.font).pack(side=LEFT)
 
-        OutputFrame = Frame(self.window)    # 보여줄 것: 지역, 날짜, 날씨, 주로 상태(건조주로(1% ~ 5%) , 양호주로(6% ~ 9%), 다습주로(10% ~ 14%), 포화주로(15% ~ 19%), 불량주로(20% 이상))
+        OutputFrame = Frame(self.window, height=50)    # 보여줄 것: 지역, 날짜, 날씨, 주로 상태(건조주로(1% ~ 5%) , 양호주로(6% ~ 9%), 다습주로(10% ~ 14%), 포화주로(15% ~ 19%), 불량주로(20% 이상))
         OutputFrame.pack()
         self.OutputLabel = Label(OutputFrame, text='\t\t검색 값을 입력하고 버튼을 눌러주세요.\t\t', font=self.font)
         self.OutputLabel.pack(side=LEFT)
         Button(OutputFrame, text='지도', command=self.ShowMap, font=self.font).pack(side=LEFT)  # TODO: text 없애고, 지도 이미지 추가
 
-        
+        HorseListFrame = Frame(self.window)
+        HorseListFrame.pack()
+        HorseScrollbar = Scrollbar(HorseListFrame)
+        self.HorseListBox = Listbox(HorseListFrame, font= self.font, height=5, yscrollcommand=HorseScrollbar.set)
+        self.HorseListBox.pack(side=LEFT, anchor=NW)
+        HorseScrollbar.pack(side=LEFT, anchor= NW, fill=Y)
+        HorseScrollbar.config(command=self.HorseListBox.yview)
 
+        for i in range(10):
+            self.HorseListBox.insert(i, str(i+1)+'번 우승마')
+        
         self.window.mainloop()
 
 MainGUI()
