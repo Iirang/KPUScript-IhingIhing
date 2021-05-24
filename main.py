@@ -1,9 +1,16 @@
 from tkinter import *
 from tkinter import font
 
+# 아이콘 생성을 위한 헤더, pyqt5를 패키징 해야한다.
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtGui import QIcon
+
 #TODO: 지도 버튼 위치 변경, 텔레그램 버튼, 메일 버튼, 하단 이미지 추가
 
-class MainGUI:
+# setWindowIcon을 위해선 (QWidget)이 필요하다.
+class MainGUI():
+
     def Search(self):   # TODO: OpenAPI 연동하여 검색한 정보를 불러오는 기능 구현
         pass
 
@@ -13,11 +20,14 @@ class MainGUI:
     def __init__(self):
         self.window = Tk()
         self.window.title("경마 정보 어플리케이션 - 이힝이힝")
+
+        # 아이콘 불러오는 기능이라는데 왜 안불러 오는지는 잘 모르겠어서 우선 넣어볼께...
+        # self.setWindowIcon(QIcon('Icon.png'))
+
         self.window.geometry("800x600")
 
-
-        # self.LogoImage = PhotoImage(file='Resource/KPU.gif')    # TODO: LogoImage 수정
-        self.LogoImage = PhotoImage(file='Resource/KPU.gif')
+        # TODO: LogoImage 수정
+        self.LogoImage = PhotoImage(file='Resource/Logo_Up.gif')
         self.font = font.Font(size=15, weight='bold', family='맑은 고딕')
 
         LogoFrame = Frame(self.window, width=800, height=100)
@@ -71,6 +81,13 @@ class MainGUI:
         self.canvas = Canvas(HorseFrame, width=220, height=235, bg='white') # 그래프를 출력할 canvas
         self.canvas.pack(padx=(10, 0), side=LEFT)                           # TODO: 승률 비교 그래프 그리는 함수 추가
 
+        # 아래칸 로고
+        self.DownLogoImage = PhotoImage(file='Resource/Logo_Down.gif')
+        DownLogoFrame = Frame(self.window, width=800, height=120)
+        DownLogoFrame.pack()
+        Label(DownLogoFrame, image=self.DownLogoImage, height=120).pack()
+
         self.window.mainloop()
+
 
 MainGUI()
