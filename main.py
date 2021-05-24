@@ -15,7 +15,9 @@ class MainGUI:
         self.window.title("경마 정보 어플리케이션 - 이힝이힝")
         self.window.geometry("800x600")
 
-        self.LogoImage = PhotoImage(file='Resource/KPU.gif')    # TODO: LogoImage 수정
+
+        # self.LogoImage = PhotoImage(file='Resource/KPU.gif')    # TODO: LogoImage 수정
+        self.LogoImage = PhotoImage(file='Resource/KPU.gif')
         self.font = font.Font(size=15, weight='bold', family='맑은 고딕')
 
         LogoFrame = Frame(self.window, width=800, height=100)
