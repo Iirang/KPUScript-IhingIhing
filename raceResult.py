@@ -28,12 +28,10 @@ class raceResult:
         if(self.rescode == 200):
             self.response_body = self.response.read()
             self.tree = ElementTree.fromstring(self.response_body)
-            print('xml load complete')
             
         else:
             self.isError = True
             print('xml load fail')
-            #print("Error Code: "+ self.rescode)
         
     def setLabel(self): # 보여줄 것: 지역, 날짜, 날씨, 주로 상태(건조주로(1% ~ 5%) , 양호주로(6% ~ 9%), 다습주로(10% ~ 14%), 포화주로(15% ~ 19%), 불량주로(20% 이상))
         # meet, rcDate, rcDay, weather, track
@@ -47,3 +45,4 @@ class raceResult:
             track = item.findtext('track')
 
             return rcDate + ' ' + rcDay + ', ' + meet + ' 경마장에서 시행된 경기입니다. 날씨: ' + weather + ', 주로: ' + track
+        return '경기가 존재하지 않습니다.'

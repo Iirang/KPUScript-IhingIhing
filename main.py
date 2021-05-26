@@ -4,7 +4,7 @@ from raceResult import *
 
 class MainGUI():
 
-    def Search(self):   # TODO: 검색한 정보가 없을 때 결과를 따로 출력
+    def Search(self):
         if self.meet.get() == '서울':
             meet = '1'
         elif self.meet.get() == '제주':
