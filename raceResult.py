@@ -62,7 +62,7 @@ class raceResult:
             owName = item.findtext('owName')
             owNo = item.findtext('owNo')
 
-            HorseInfo[count].extend([hrName, hrNo, name, age, sex, ord, owName, owNo])
+            HorseInfo[count].extend(hrName, hrNo, name, age, sex, ord, owName, owNo)
             count += 1
 
             return HorseInfo

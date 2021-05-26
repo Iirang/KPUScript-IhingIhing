@@ -14,31 +14,10 @@
 
 class Horse:
     def __init__(self):
-        pass
+        self.InfoList = []
 
     def SetRaceresultInfo(self, hrName, hrNo, name, age, sex, ord, owName, owNo):
-        self.hrName = hrName
-        self.hrNo = hrNo
-        self.name = name
-        self.age = age
-        self.sex = sex
-        self.ord = ord
-        self.owName = owName
-        self.owNo = owNo
+        self.InfoList.extend(hrName, hrNo, name, age, sex, ord, owName, owNo)
     
     def SetRacehorseInfo(self, birthday, rank, faHrName, faHrNo, moHrName, moHrNo, rcCntT, ord1CntT, ord2CntT, ord3CntT, rcCntY, ord1CntY, ord2CntY, ord3CntY, chaksunT):
-        self.birthday = birthday
-        self.rank = rank
-        self.faHrName = faHrName
-        self.faHrNo = faHrNo
-        self.moHrName = moHrName
-        self.moHrNo = moHrNo
-        self.rcCntT = rcCntT
-        self.ord1CntT = ord1CntT
-        self.ord2CntT = ord2CntT
-        self.ord3CntT = ord3CntT
-        self.rcCntY = rcCntY
-        self.ord1CntY = ord1CntY
-        self.ord2CntY = ord2CntY
-        self.ord3CntY = ord3CntY
-        self.chaksunT = chaksunT
+        self.InfoList.extend(birthday, rank, faHrName, faHrNo, moHrName, moHrNo, rcCntT, ord1CntT, ord2CntT, ord3CntT, rcCntY, ord1CntY, ord2CntY, ord3CntY, chaksunT)

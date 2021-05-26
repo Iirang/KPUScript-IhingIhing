@@ -1,11 +1,16 @@
 from tkinter import *
 from tkinter import font
+from Horse import *
 from raceResult import *
+from raceHorseInfo import *
 from Map import *
+
 
 class MainGUI():
 
     def Search(self):
+        self.HorseInfoList.clear()
+
         if self.meet.get() == '서울':
             meet = '1'
         elif self.meet.get() == '제주':
@@ -24,7 +29,10 @@ class MainGUI():
         self.raceResult.LoadXML()
         self.OutputLabel['text'] = self.raceResult.setLabel()
 
-    def ShowMap(self):  # TODO: 지도 연동
+        resultInfo = self.raceResult.LoadraceResultInfo()
+        horseInfo = self.raceHorseInfo.LoadHorseInfo()
+
+    def ShowMap(self):
         if self.meet.get() == '서울':
             Seoul()
         elif self.meet.get() == '제주':
@@ -118,8 +126,9 @@ class MainGUI():
         DownLogoFrame.pack()
         Label(DownLogoFrame, image=self.DownLogoImage, height=120, bg='white').pack()
 
-        # HorseInfoList = [] # 말 정보 리스트
+        self.HorseInfoList = [] # 말 정보 리스트
         self.raceResult = raceResult()  # 경주기록 정보 API
+        self.raceHorseInfo = raceHorseInfo()  # 경주마 상세정보 API
 
         self.window.mainloop()
 
