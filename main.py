@@ -18,12 +18,12 @@ class MainGUI():
         self.window.geometry("800x600")
         self.window['bg'] = 'white'
 
-        self.LogoImage = PhotoImage(file='Resource/Logo_Up.gif')
+        self.LogoImage = PhotoImage(file='Resource/Logo_Up_b.gif')
         self.font = font.Font(size=15, weight='bold', family='맑은 고딕')
 
-        LogoFrame = Frame(self.window, width=800, height=100, bg='white')
+        LogoFrame = Frame(self.window, width=800, height=110, bg='white')
         LogoFrame.pack()
-        Label(LogoFrame, image=self.LogoImage, height=100, bg='white').pack()
+        Label(LogoFrame, image=self.LogoImage, height=110, bg='white').pack()
 
         self.SearchLabel = []   # 0: 지역, 1: 년도, 2: 월, 3: 일, 4: 경주 번호
         self.SearchEntry = [] 
@@ -78,7 +78,7 @@ class MainGUI():
         Button(ButtonFrame, text='Gmail', font=self.font).pack(padx=(10, 0), side=LEFT) # TODO: Gmail 연동
 
         # 아래 칸 로고
-        self.DownLogoImage = PhotoImage(file='Resource/Logo_Down.gif')
+        self.DownLogoImage = PhotoImage(file='Resource/Logo_Down_a.gif')
         DownLogoFrame = Frame(self.window, width=800, height=120, bg='white')
         DownLogoFrame.pack()
         Label(DownLogoFrame, image=self.DownLogoImage, height=120, bg='white').pack()
