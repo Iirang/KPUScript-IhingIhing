@@ -1,8 +1,6 @@
 from tkinter import *
 from tkinter import font
 
-#TODO: 지도 버튼 위치 변경, 텔레그램 버튼, 메일 버튼 추가
-
 class MainGUI():
 
     def Search(self):   # TODO: OpenAPI 연동하여 검색한 정보를 불러오는 기능 구현
@@ -30,16 +28,29 @@ class MainGUI():
         SearchFrame = Frame(self.window, bg='white')    # 입력받아야 할 것: 지역(1: 서울, 2: 제주, 3: 부산), 날짜(년, 월, 일), 경주 번호
                                                         # Entry 개수: 지역(1)+날짜(3)+경주 번호(1) = 5
         SearchFrame.pack()
+
         self.SearchLabel.append(Label(SearchFrame, text='지역', font=self.font, bg='white'))
         self.SearchLabel.append(Label(SearchFrame, text='년', font=self.font, bg='white'))
         self.SearchLabel.append(Label(SearchFrame, text='월', font=self.font, bg='white'))
         self.SearchLabel.append(Label(SearchFrame, text='일', font=self.font, bg='white'))
         self.SearchLabel.append(Label(SearchFrame, text='경주 번호', font=self.font, bg='white'))
 
+        self.meet = StringVar()     # 지역
+        self.year = StringVar()     # 년도
+        self.month = StringVar()    # 월
+        self.date = StringVar()     # 일
+        self.rcNum = StringVar()    # 경주 번호
+
+        self.SearchEntry.append(Entry(SearchFrame, textvariable=self.meet, width=5, font=self.font, justify=RIGHT))
+        self.SearchEntry.append(Entry(SearchFrame, textvariable=self.year, width=5, font=self.font, justify=RIGHT))
+        self.SearchEntry.append(Entry(SearchFrame, textvariable=self.month, width=5, font=self.font, justify=RIGHT))
+        self.SearchEntry.append(Entry(SearchFrame, textvariable=self.date, width=5, font=self.font, justify=RIGHT))
+        self.SearchEntry.append(Entry(SearchFrame, textvariable=self.rcNum, width=5, font=self.font, justify=RIGHT))
+
         for i in range(5):
-            self.SearchEntry.append(Entry(SearchFrame, width=5, font=self.font, justify=RIGHT))
             self.SearchEntry[i].pack(padx=(10, 0), side=LEFT)
             self.SearchLabel[i].pack(padx=(10, 0), side=LEFT)
+
         Button(SearchFrame, text='검색', command=self.Search, font=self.font).pack(padx=(10, 0), side=LEFT)
         Button(SearchFrame, text='지도', command=self.ShowMap, font=self.font).pack(padx=(10, 0), side=LEFT)  # TODO: text 없애고, 지도 이미지 추가
 
