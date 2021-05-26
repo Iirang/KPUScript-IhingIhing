@@ -51,6 +51,6 @@ class raceHorseInfo:
             ord3CntY = item.findtext('ord3CntY')
             chaksunT = item.findtext('chaksunT')
 
-            HorseInfo.extend(birthday, rank, faHrName, faHrNo, moHrName, moHrNo, rcCntT, ord1CntT, ord2CntT, ord3CntT, rcCntY, ord1CntY, ord2CntY, ord3CntY, chaksunT)
+            HorseInfo.extend([birthday, rank, faHrName, faHrNo, moHrName, moHrNo, rcCntT, ord1CntT, ord2CntT, ord3CntT, rcCntY, ord1CntY, ord2CntY, ord3CntY, chaksunT])
 
         return HorseInfo

@@ -49,7 +49,6 @@ class raceResult:
          
     def LoadraceResultInfo(self):
         #hrName, hrNo, name, age, sex, ord, owName, owNo
-        count = 0
         HorseInfo = []
         itemElements = self.tree.iter('item')
         for item in itemElements:
@@ -62,7 +61,6 @@ class raceResult:
             owName = item.findtext('owName')
             owNo = item.findtext('owNo')
 
-            HorseInfo[count].extend(hrName, hrNo, name, age, sex, ord, owName, owNo)
-            count += 1
+            HorseInfo.extend([hrName, hrNo, name, age, sex, ord, owName, owNo])
 
-            return HorseInfo
+        return HorseInfo

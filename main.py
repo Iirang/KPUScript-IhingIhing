@@ -30,7 +30,9 @@ class MainGUI():
         self.OutputLabel['text'] = self.raceResult.setLabel()
 
         resultInfo = self.raceResult.LoadraceResultInfo()
-        horseInfo = self.raceHorseInfo.LoadHorseInfo()
+        #horseInfo = self.raceHorseInfo.LoadHorseInfo()
+        
+        print(resultInfo)
 
     def ShowMap(self):
         if self.meet.get() == '서울':
