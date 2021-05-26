@@ -1,5 +1,3 @@
-import folium
-import webbrowser
 from tkinter import *
 from tkinter import font
 from raceResult import *
@@ -28,11 +26,11 @@ class MainGUI():
 
     def ShowMap(self):  # TODO: 지도 연동
         if self.meet.get() == '서울':
-            command = Seoul()
+            Seoul()
         elif self.meet.get() == '제주':
-            command = Jeju()
+            Jeju()
         else:
-            command = Busan()
+            Busan()
 
     def __init__(self):
         self.window = Tk()
@@ -120,7 +118,8 @@ class MainGUI():
         DownLogoFrame.pack()
         Label(DownLogoFrame, image=self.DownLogoImage, height=120, bg='white').pack()
 
-        self.raceResult = raceResult()
+        # HorseInfoList = [] # 말 정보 리스트
+        self.raceResult = raceResult()  # 경주기록 정보 API
 
         self.window.mainloop()
 

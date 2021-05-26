@@ -46,3 +46,23 @@ class raceResult:
 
             return rcDate + ' ' + rcDay + ', ' + meet + ' 경마장에서 시행된 경기입니다. 날씨: ' + weather + ', 주로: ' + track
         return '경기가 존재하지 않습니다.'
+         
+    def LoadraceResultInfo(self):
+        #hrName, hrNo, name, age, sex, ord, owName, owNo
+        count = 0
+        HorseInfo = []
+        itemElements = self.tree.iter('item')
+        for item in itemElements:
+            hrName = item.findtext('hrName')
+            hrNo = item.findtext('hrNo')
+            name = item.findtext('name')
+            age = item.findtext('age')
+            sex = item.findtext('sex')
+            ord = item.findtext('ord')
+            owName = item.findtext('owName')
+            owNo = item.findtext('owNo')
+
+            HorseInfo[count].extend([hrName, hrNo, name, age, sex, ord, owName, owNo])
+            count += 1
+
+            return HorseInfo
