@@ -56,7 +56,9 @@ class MainGUI():
 
         OutputFrame = Frame(self.window, height=50, bg='white')    # 보여줄 것: 지역, 날짜, 날씨, 주로 상태(건조주로(1% ~ 5%) , 양호주로(6% ~ 9%), 다습주로(10% ~ 14%), 포화주로(15% ~ 19%), 불량주로(20% 이상))
         OutputFrame.pack()
-        self.OutputLabel = Label(OutputFrame, text='\t\t검색 값을 입력하고 버튼을 눌러주세요.\t\t', font=self.font, bg='white')
+
+        self.OutputText = StringVar(value='\t\t검색 값을 입력하고 버튼을 눌러주세요.\t\t')
+        self.OutputLabel = Label(OutputFrame, textvariable=self.OutputText, font=self.font, bg='white')
         self.OutputLabel.pack(side=LEFT)
 
         HorseFrame = Frame(self.window, bg='white')
