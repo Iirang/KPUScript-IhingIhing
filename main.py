@@ -1,6 +1,9 @@
+import folium
+import webbrowser
 from tkinter import *
 from tkinter import font
 from raceResult import *
+from Map import *
 
 class MainGUI():
 
@@ -24,7 +27,12 @@ class MainGUI():
         self.OutputLabel['text'] = self.raceResult.setLabel()
 
     def ShowMap(self):  # TODO: 지도 연동
-        pass
+        if self.meet.get() == '서울':
+            command = Seoul()
+        elif self.meet.get() == '제주':
+            command = Jeju()
+        else:
+            command = Busan()
 
     def __init__(self):
         self.window = Tk()

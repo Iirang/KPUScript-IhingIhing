@@ -1,4 +1,4 @@
-from tkinter import *
+
 import folium
 import webbrowser
 
@@ -50,11 +50,3 @@ def Jeju():
     # html 파일로 저장
     map_osm.save('osm.html')
     webbrowser.open_new('osm.html')
-
-
-window= Tk()
-Button(window, text='렛츠런 파크 서울점', command=Seoul).pack()
-Button(window, text='렛츠런 파크 부산경남점', command=Busan).pack()
-Button(window, text='렛츠런 파크 제주', command=Jeju).pack()
-
-window.mainloop()
