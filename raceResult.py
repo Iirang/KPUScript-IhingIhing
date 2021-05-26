@@ -4,20 +4,12 @@ from xml.etree import ElementTree
 
 ServiceKey = 'Jnx4DBhGQtUPd5DJUoi0WMJSBLPyJlHbmnhxHtz8XtFaGul%2FfaIKT%2BMULxP%2BaVRGFC7bYbca%2FoHde8dfxM%2BuHA%3D%3D'
 
-# Example Data
-# examdate = '20210507'
-# meet = '1'
-# rc_date = '20210507'
-# rc_month = '202105'
-# rc_no = '1'
-# rc_year = '2021'
-
 class raceResult:
     def __init__(self):
         self.url = 'http://apis.data.go.kr/B551015/API4/raceResult'
         self.isError = False
     
-    def getParam(self, examdate, meet, rc_date, rc_month, rc_no, rc_year):
+    def setParam(self, examdate, meet, rc_date, rc_month, rc_no, rc_year):
         self.examdate = examdate
         self.meet = meet
         self.rc_date = rc_date
@@ -44,4 +36,14 @@ class raceResult:
             #print("Error Code: "+ self.rescode)
         
     def setLabel(self): # 보여줄 것: 지역, 날짜, 날씨, 주로 상태(건조주로(1% ~ 5%) , 양호주로(6% ~ 9%), 다습주로(10% ~ 14%), 포화주로(15% ~ 19%), 불량주로(20% 이상))
-        pass
+        # meet, rcDate, rcDay, weather, track
+        # ex) 20210508 토요일, 서울 경마장에서 시행된 경기입니다. 날씨: 맑음, 주로: 다습(11%)
+        itemElements = self.tree.iter('item')
+        for item in itemElements:
+            meet = item.findtext('meet')
+            rcDate = item.findtext('rcDate')
+            rcDay = item.findtext('rcDay')
+            weather = item.findtext('weather')
+            track = item.findtext('track')
+
+            return rcDate + ' ' + rcDay + ', ' + meet + ' 경마장에서 시행된 경기입니다. 날씨: ' + weather + ', 주로: ' + track

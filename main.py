@@ -1,10 +1,27 @@
 from tkinter import *
 from tkinter import font
+from raceResult import *
 
 class MainGUI():
 
-    def Search(self):   # TODO: OpenAPI 연동하여 검색한 정보를 불러오는 기능 구현
-        pass
+    def Search(self):   # TODO: 검색한 정보가 없을 때 결과를 따로 출력
+        if self.meet.get() == '서울':
+            meet = '1'
+        elif self.meet.get() == '제주':
+            meet = '2'
+        else:
+            meet = '3'
+        
+        month = self.month.get().rjust(2, '0')
+        date = self.date.get().rjust(2, '0')
+        examdate = self.year.get() + month + date
+        rc_month = self.year.get() + month
+        rc_no = self.rcNum.get()
+        rc_year = self.year.get()
+
+        self.raceResult.setParam(examdate, meet, examdate, rc_month, rc_no, rc_year)
+        self.raceResult.LoadXML()
+        self.OutputLabel['text'] = self.raceResult.setLabel()
 
     def ShowMap(self):  # TODO: 지도 연동
         pass
@@ -57,8 +74,7 @@ class MainGUI():
         OutputFrame = Frame(self.window, height=50, bg='white')    # 보여줄 것: 지역, 날짜, 날씨, 주로 상태(건조주로(1% ~ 5%) , 양호주로(6% ~ 9%), 다습주로(10% ~ 14%), 포화주로(15% ~ 19%), 불량주로(20% 이상))
         OutputFrame.pack()
 
-        self.OutputText = StringVar(value='\t\t검색 값을 입력하고 버튼을 눌러주세요.\t\t')
-        self.OutputLabel = Label(OutputFrame, textvariable=self.OutputText, font=self.font, bg='white')
+        self.OutputLabel = Label(OutputFrame, text='\t\t검색 값을 입력하고 버튼을 눌러주세요.\t\t', font=self.font, bg='white')
         self.OutputLabel.pack(side=LEFT)
 
         HorseFrame = Frame(self.window, bg='white')
@@ -95,6 +111,8 @@ class MainGUI():
         DownLogoFrame = Frame(self.window, width=800, height=120, bg='white')
         DownLogoFrame.pack()
         Label(DownLogoFrame, image=self.DownLogoImage, height=120, bg='white').pack()
+
+        self.raceResult = raceResult()
 
         self.window.mainloop()
 
