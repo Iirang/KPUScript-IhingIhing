@@ -44,7 +44,7 @@ class MainGUI():
             Seoul()
         elif self.meet.get() == '제주':
             Jeju()
-        else:
+        elif self.meet.get() == '부산' or self.meet.get() == '부산경남':
             Busan()
 
     def __init__(self):
