@@ -1,6 +1,6 @@
 # -*- coding: cp949 -*-
 # ID: kpuscript2021@gmail.com
-# PW: ½ºÅ©¸³Æ®¾ğ¾î2021
+# PW: ìŠ¤í¬ë¦½íŠ¸ì–¸ì–´2021
 
 import mimetypes
 import mysmtplib
@@ -8,30 +8,30 @@ from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
 
 #global value
-host = "smtp.gmail.com" # Gmail STMP ¼­¹ö ÁÖ¼Ò.
+host = "smtp.gmail.com" # Gmail STMP ì„œë²„ ì£¼ì†Œ.
 port = "587"
 htmlFileName = "logo.html"
 
-# º¸³»´Â »ç¶÷ÀÇ ¸ŞÀÏ ÁÖ¼Ò / ¹Ş´Â »ç¶÷ÀÇ ¸ŞÀÏ ÁÖ¼Ò
+# ë³´ë‚´ëŠ” ì‚¬ëŒì˜ ë©”ì¼ ì£¼ì†Œ / ë°›ëŠ” ì‚¬ëŒì˜ ë©”ì¼ ì£¼ì†Œ
 senderAddr = "kpuscript2021@gmail.com"     
 recipientAddr = "game2raaaang@kpu.ac.kr"
 
 msg = MIMEBase("multipart", "alternative")
-msg['Subject'] = "[ÇÑ±¹¸¶»çÈ¸] ÇÑ±¹¸¶»çÈ¸¿¡¼­ ¿äÃ»ÇÏ½Å Á¤º¸¸¦ º¸³»µå¸³´Ï´Ù"
+msg['Subject'] = "[í•œêµ­ë§ˆì‚¬íšŒ] í•œêµ­ë§ˆì‚¬íšŒì—ì„œ ìš”ì²­í•˜ì‹  ì •ë³´ë¥¼ ë³´ë‚´ë“œë¦½ë‹ˆë‹¤"
 msg['From'] = senderAddr
 msg['To'] = recipientAddr
 
-# MIME ¹®¼­¸¦ »ı¼ºÇÕ´Ï´Ù.
+# MIME ë¬¸ì„œë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
 # htmlFD = open(htmlFileName, 'rb')
 # HtmlPart = MIMEText(htmlFD.read(),'html', _charset = 'UTF-8' )
 # htmlFD.close()
 
-# ¸¸µé¾ú´ø mimeÀ» MIMEBase¿¡ Ã·ºÎ ½ÃÅ²´Ù.
+# ë§Œë“¤ì—ˆë˜ mimeì„ MIMEBaseì— ì²¨ë¶€ ì‹œí‚¨ë‹¤.
 # msg.attach(HtmlPart)
 
-# ¸ŞÀÏÀ» ¹ß¼ÛÇÑ´Ù.
+# ë©”ì¼ì„ ë°œì†¡í•œë‹¤.
 s = mysmtplib.MySMTP(host,port)
-s.set_debuglevel(1)        # µğ¹ö±ëÀÌ ÇÊ¿äÇÒ °æ¿ì ÁÖ¼®À» Ç¬´Ù.
+s.set_debuglevel(1)        # ë””ë²„ê¹…ì´ í•„ìš”í•  ê²½ìš° ì£¼ì„ì„ í‘¼ë‹¤.
 s.ehlo()
 s.starttls()
 s.ehlo()
