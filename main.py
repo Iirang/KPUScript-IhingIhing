@@ -4,6 +4,7 @@ from Horse import *
 from raceResult import *
 from raceHorseInfo import *
 from Map import *
+from gmail import *
 
 
 class MainGUI():
@@ -46,6 +47,9 @@ class MainGUI():
             Jeju()
         elif self.meet.get() == '부산' or self.meet.get() == '부산경남':
             Busan()
+
+    def SendMail(self):
+        GetMail()
 
     def __init__(self):
         self.window = Tk()
@@ -125,7 +129,7 @@ class MainGUI():
         ButtonFrame = Frame(self.window, bg='white')
         ButtonFrame.pack()
         Button(ButtonFrame, text='텔레그램', font=self.font).pack(padx=(590, 0), side=LEFT) # TODO: 텔레그램 봇 연동
-        Button(ButtonFrame, text='Gmail', font=self.font).pack(padx=(10, 0), side=LEFT) # TODO: Gmail 연동
+        Button(ButtonFrame, text='Gmail', command=self.SendMail, font=self.font).pack(padx=(10, 0), side=LEFT) # TODO: Gmail 연동
 
         # 아래 칸 로고
         self.DownLogoImage = PhotoImage(file='Resource/Logo_Down_a.gif')
