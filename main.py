@@ -10,6 +10,7 @@ class MainGUI():
 
     def Search(self):
         self.HorseInfoList.clear()
+        self.HorseInfoList = [Horse() for _ in range(10)] # 말 정보 리스트
 
         if self.meet.get() == '서울':
             meet = '1'
@@ -29,17 +30,21 @@ class MainGUI():
         self.raceResult.LoadXML()
         self.OutputLabel['text'] = self.raceResult.setLabel()
 
-        resultInfo = self.raceResult.LoadraceResultInfo()
-        #horseInfo = self.raceHorseInfo.LoadHorseInfo()
-        
-        print(resultInfo)
+        resultInfo = self.raceResult.LoadraceResultInfo()   # 8개
+
+        for i in range(10):
+            for j in range(8):
+                self.HorseInfoList[i].SetInfo(resultInfo[i * 8 + j], j % 8)
+    
+        # self.raceHorseInfo.setParam() # hr_name, hr_no, meet
+        # horseInfo = self.raceHorseInfo.LoadHorseInfo() # 15개
 
     def ShowMap(self):
         if self.meet.get() == '서울':
             Seoul()
         elif self.meet.get() == '제주':
             Jeju()
-        else:
+        elif self.meet.get() == '부산' or self.meet.get() == '부산경남':
             Busan()
 
     def __init__(self):
