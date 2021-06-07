@@ -47,7 +47,9 @@ class MainGUI():
             self.raceHorseInfo.LoadXML()
             horseInfo[i] = self.raceHorseInfo.LoadHorseInfo()   # 15개
 
-            print(horseInfo[i])
+        for i in range(10):
+            for j in range(15):
+                self.HorseInfoList[i].SetInfo(horseInfo[i][j], j % 15 + 8)
 
     def ShowMap(self):
         if self.meet.get() == '서울':

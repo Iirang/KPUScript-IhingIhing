@@ -38,7 +38,7 @@ CHAKSUNT = 22
 
 class Horse:
     def __init__(self):
-        self.InfoList = []
+        pass
 
     def SetInfo(self, data, index):
         if index == 0:
@@ -135,3 +135,10 @@ class Horse:
             return self.ord3CntY
         elif index == 22:
             return self.chaksunT
+
+    def printInfo(self):
+        print(self.hrName, self.hrNo, self.name, self.age, self.sex, self.ord, self.owName, self.owNo)
+        print(self.birthday, self.rank, self.faHrName, self.faHrNo, self.moHrName, self.moHrNo)
+        print(self.rcCntT, self.ord1CntT, self.ord2CntT, self.ord3CntT)
+        print(self.rcCntY, self.ord1CntY, self.ord2CntY, self.ord3CntY)
+        print(self.chaksunT)
