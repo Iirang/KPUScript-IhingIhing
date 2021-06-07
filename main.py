@@ -17,7 +17,7 @@ class MainGUI():
             meet = '1'
         elif self.meet.get() == '제주':
             meet = '2'
-        else:
+        elif self.meet.get() == '부산' or self.meet.get() == '부산경남':
             meet = '3'
         
         month = self.month.get().rjust(2, '0')
@@ -36,9 +36,18 @@ class MainGUI():
         for i in range(10):
             for j in range(8):
                 self.HorseInfoList[i].SetInfo(resultInfo[i * 8 + j], j % 8)
-    
-        # self.raceHorseInfo.setParam() # hr_name, hr_no, meet
-        # horseInfo = self.raceHorseInfo.LoadHorseInfo() # 15개
+
+        horseInfo = [[0]*15]*10
+
+        for i in range(10):
+            name = self.HorseInfoList[i].GetInfo(HR_NAME)
+            no = self.HorseInfoList[i].GetInfo(HR_NO)
+            
+            self.raceHorseInfo.setParam(name, no, meet)
+            self.raceHorseInfo.LoadXML()
+            horseInfo[i] = self.raceHorseInfo.LoadHorseInfo()   # 15개
+
+            print(horseInfo[i])
 
     def ShowMap(self):
         if self.meet.get() == '서울':
@@ -142,6 +151,5 @@ class MainGUI():
         self.raceHorseInfo = raceHorseInfo()  # 경주마 상세정보 API
 
         self.window.mainloop()
-
 
 MainGUI()

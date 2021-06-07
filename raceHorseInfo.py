@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import urllib.request
+from urllib.parse import quote
 from xml.etree import ElementTree
 
 ServiceKey = 'Jnx4DBhGQtUPd5DJUoi0WMJSBLPyJlHbmnhxHtz8XtFaGul%2FfaIKT%2BMULxP%2BaVRGFC7bYbca%2FoHde8dfxM%2BuHA%3D%3D'
@@ -10,13 +11,14 @@ class raceHorseInfo:
         self.isError = False
     
     def setParam(self, hr_name, hr_no, meet):
-        self.hr_name = hr_name
+        self.hr_name = quote(hr_name)
         self.hr_no = hr_no
         self.meet = meet
         
     def LoadXML(self):
+        # self.RacehorseinfoURL = 'http://apis.data.go.kr/B551015/API8/raceHorseInfo?serviceKey=Jnx4DBhGQtUPd5DJUoi0WMJSBLPyJlHbmnhxHtz8XtFaGul%2FfaIKT%2BMULxP%2BaVRGFC7bYbca%2FoHde8dfxM%2BuHA%3D%3D&pageNo=1&numOfRows=10&hr_name=%EC%97%91%ED%86%A4%EC%A7%88%EC%A3%BC&hr_no=043313&meet=1'
         self.RacehorseinfoURL = self.url + '?serviceKey=' + ServiceKey + '&pageNo=1&numOfRows=1&hr_name=' + self.hr_name \
-                            + '&hr_no=' + self.hr_no + '&meet=' + self.meet
+                           + '&hr_no=' + self.hr_no + '&meet=' + self.meet
 
         self.request = urllib.request.Request(self.RacehorseinfoURL)
         self.response = urllib.request.urlopen(self.request)

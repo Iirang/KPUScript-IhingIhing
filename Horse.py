@@ -12,6 +12,30 @@
 # ord1CntY: 최근 1년 1위 횟수, ord2CntY: 최근 1년 2위 횟수, ord3CntY: 최근 1년 3위 횟수
 # chaksunT: 통산 수득 상금
 
+HR_NAME = 0
+HR_NO = 1
+NAME = 2
+AGE = 3
+SEX = 4
+ORD = 5
+OW_NAME = 6
+OW_NO = 7
+BIRTHDAY = 8
+RANK = 9
+FAHR_NAME = 10
+FAHR_NO = 11
+MOHR_NAME = 12
+MOHR_NO = 13
+RCCNTT = 14
+ORD1CNTT = 15
+ORD2CNTT = 16
+ORD3CNTT = 17
+RCCNTY = 18
+ORD1CNTY = 19
+ORD2CNTY = 20
+ORD3CNTY = 21
+CHAKSUNT = 22
+
 class Horse:
     def __init__(self):
         self.InfoList = []
@@ -111,9 +135,3 @@ class Horse:
             return self.ord3CntY
         elif index == 22:
             return self.chaksunT
-
-    def SetRaceresultInfo(self, hrName, hrNo, name, age, sex, ord, owName, owNo):
-        self.InfoList.extend(hrName, hrNo, name, age, sex, ord, owName, owNo)
-    
-    def SetRacehorseInfo(self, birthday, rank, faHrName, faHrNo, moHrName, moHrNo, rcCntT, ord1CntT, ord2CntT, ord3CntT, rcCntY, ord1CntY, ord2CntY, ord3CntY, chaksunT):
-        self.InfoList.extend(birthday, rank, faHrName, faHrNo, moHrName, moHrNo, rcCntT, ord1CntT, ord2CntT, ord3CntT, rcCntY, ord1CntY, ord2CntY, ord3CntY, chaksunT)
