@@ -45,7 +45,7 @@ class raceResult:
             track = item.findtext('track')
 
             return rcDate + ' ' + rcDay + ', ' + meet + ' 경마장에서 시행된 경기입니다. 날씨: ' + weather + ', 주로: ' + track
-        return '경기가 존재하지 않습니다.'
+        return '경기가 오래되었거나, 존재하지 않습니다.'
          
     def LoadraceResultInfo(self):
         #hrName, hrNo, name, age, sex, ord, owName, owNo
