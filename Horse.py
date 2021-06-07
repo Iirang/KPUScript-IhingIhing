@@ -1,6 +1,7 @@
 # raceResult
 # hrName: 마명, hrNo: 마번, name: 국적, age: 나이, sex: 성별, ord: 순위
 # owName: 마주명, owNo: 마주번호
+# rcTime: 경주기록
 
 #raceHorseInfo
 # birthday: 생년월일, rank: 등급
@@ -20,25 +21,26 @@ SEX = 4
 ORD = 5
 OW_NAME = 6
 OW_NO = 7
-BIRTHDAY = 8
-RANK = 9
-FAHR_NAME = 10
-FAHR_NO = 11
-MOHR_NAME = 12
-MOHR_NO = 13
-RCCNTT = 14
-ORD1CNTT = 15
-ORD2CNTT = 16
-ORD3CNTT = 17
-RCCNTY = 18
-ORD1CNTY = 19
-ORD2CNTY = 20
-ORD3CNTY = 21
-CHAKSUNT = 22
+RC_TIME = 8
+BIRTHDAY = 9
+RANK = 10
+FAHR_NAME = 11
+FAHR_NO = 12
+MOHR_NAME = 13
+MOHR_NO = 14
+RCCNTT = 15
+ORD1CNTT = 16
+ORD2CNTT = 17
+ORD3CNTT = 18
+RCCNTY = 19
+ORD1CNTY = 20 
+ORD2CNTY = 21
+ORD3CNTY = 22
+CHAKSUNT = 23
 
 class Horse:
     def __init__(self):
-        self.InfoList = [''] * 23
+        self.InfoList = [''] * 24
 
     def SetInfo(self, data, index):
         self.InfoList[index] = data

@@ -48,7 +48,7 @@ class raceResult:
         return '경기가 오래되었거나, 존재하지 않습니다.'
          
     def LoadraceResultInfo(self):
-        #hrName, hrNo, name, age, sex, ord, owName, owNo
+        # hrName, hrNo, name, age, sex, ord, owName, owNo, rcTime
         HorseInfo = []
         itemElements = self.tree.iter('item')
         for item in itemElements:
@@ -60,7 +60,8 @@ class raceResult:
             ord = item.findtext('ord')
             owName = item.findtext('owName')
             owNo = item.findtext('owNo')
+            rcTime = item.findtext('rcTime')
 
-            HorseInfo.extend([hrName, hrNo, name, age, sex, ord, owName, owNo])
+            HorseInfo.extend([hrName, hrNo, name, age, sex, ord, owName, owNo, rcTime])
 
         return HorseInfo
