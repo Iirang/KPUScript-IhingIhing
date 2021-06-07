@@ -65,19 +65,18 @@ class MainGUI():
     
     def CurSelect(self, evt):   # evt를 사용하지 않더라도, tkinter에서 이벤트를 설명하는 객체를 호출하기 때문에 evt를 매개변수로 추가해야 한다.
         index = self.HorseListbox.index(self.HorseListbox.curselection())
-        print(index)
-
+        
         InfoList = self.HorseInfoList[index].GetInfoList()
 
-        self.raceInfoLabel['text']  = '마명: ' + InfoList[HR_NAME] + '\n마번: ' + InfoList[HR_NO] + '\t\t  '\
+        self.raceInfoLabel['text']  = '마명: ' + InfoList[HR_NAME] + '\n마번: ' + InfoList[HR_NO]\
                                     + '\n국적: ' + InfoList[NAME] + '\n나이: ' + InfoList[AGE]\
                                     + '\n성별: ' + InfoList[SEX]\
                                     + '\n마주명: ' + InfoList[OW_NAME] + '\n마주번호: ' + InfoList[OW_NO]\
                                     + '\n순위: ' + InfoList[ORD] + '\n경주기록: ' + InfoList[RC_TIME]
 
-        self.raceHorseInfoLabel['text'] = '생일: ' + InfoList[BIRTHDAY] + '\n등급: ' + InfoList[RANK] + '\t\t  '\
-                                        + '\n부마명: ' + InfoList[FAHR_NAME] + '\n부마번: ' + InfoList[FAHR_NO]\
-                                        + '\n모마명: ' + InfoList[MOHR_NAME] + '\n모마번: ' + InfoList[MOHR_NO]\
+        self.raceHorseInfoLabel['text'] = '생일: ' + InfoList[BIRTHDAY] + '\n등급: ' + InfoList[RANK]\
+                                        + '\n부마명, 번: ' + InfoList[FAHR_NAME] + ', ' + InfoList[FAHR_NO]\
+                                        + '\n모마명, 번: ' + InfoList[MOHR_NAME] + ', ' + InfoList[MOHR_NO]\
                                         + '\n통산 총 출주 횟수: ' + InfoList[RCCNTT]\
                                         + '\n통산 1착 횟수: ' + InfoList[ORD1CNTT]\
                                         + '\n통산 2착 횟수: ' + InfoList[ORD2CNTT]\
@@ -164,10 +163,10 @@ class MainGUI():
         self.HorseInfoNotebook.add(self.raceHorseInfoFrame, text='경주마 상세정보')
 
         self.raceInfoLabel = Label(self.raceInfoFrame, bg='white', justify=LEFT, text='경기를 입력하고,\n좌측 리스트에서 말을 선택해주세요.', font=self.font2)
-        self.raceInfoLabel.pack()
+        self.raceInfoLabel.pack(anchor=W)
 
         self.raceHorseInfoLabel = Label(self.raceHorseInfoFrame, bg='white', justify=LEFT, text='경기를 입력하고,\n좌측 리스트에서 말을 선택해주세요.', font=self.font2)
-        self.raceHorseInfoLabel.pack()
+        self.raceHorseInfoLabel.pack(anchor=W)
 
         self.canvas = Canvas(HorseFrame, width=220, height=235, bg='white') # 그래프를 출력할 canvas
         self.canvas.pack(padx=(10, 0), side=LEFT)                           # TODO: 승률 비교 그래프 그리는 함수 추가
