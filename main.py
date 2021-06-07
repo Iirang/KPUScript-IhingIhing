@@ -32,11 +32,11 @@ class MainGUI():
         self.raceResult.LoadXML()
         self.OutputLabel['text'] = self.raceResult.setLabel()
 
-        resultInfo = self.raceResult.LoadraceResultInfo()   # 8개
+        resultInfo = self.raceResult.LoadraceResultInfo()   # 9개
 
         for i in range(10):
-            for j in range(8):
-                self.HorseInfoList[i].SetInfo(resultInfo[i * 8 + j], j % 8)
+            for j in range(9):
+                self.HorseInfoList[i].SetInfo(resultInfo[i * 9 + j], j % 9)
 
         horseInfo = [[0]*15]*10
 
@@ -50,7 +50,7 @@ class MainGUI():
 
         for i in range(10):
             for j in range(15):
-                self.HorseInfoList[i].SetInfo(horseInfo[i][j], j % 15 + 8)
+                self.HorseInfoList[i].SetInfo(horseInfo[i][j], j % 15 + 9)
 
     def ShowMap(self):
         if self.meet.get() == '서울':
@@ -69,7 +69,24 @@ class MainGUI():
 
         InfoList = self.HorseInfoList[index].GetInfoList()
 
-        #self.raceInfoLabel['text'] = 
+        self.raceInfoLabel['text']  = '마명: ' + InfoList[HR_NAME] + '\n마번: ' + InfoList[HR_NO] + '\t\t  '\
+                                    + '\n국적: ' + InfoList[NAME] + '\n나이: ' + InfoList[AGE]\
+                                    + '\n성별: ' + InfoList[SEX]\
+                                    + '\n마주명: ' + InfoList[OW_NAME] + '\n마주번호: ' + InfoList[OW_NO]\
+                                    + '\n순위: ' + InfoList[ORD] + '\n경주기록: ' + InfoList[RC_TIME]
+
+        self.raceHorseInfoLabel['text'] = '생일: ' + InfoList[BIRTHDAY] + '\n등급: ' + InfoList[RANK] + '\t\t  '\
+                                        + '\n부마명: ' + InfoList[FAHR_NAME] + '\n부마번: ' + InfoList[FAHR_NO]\
+                                        + '\n모마명: ' + InfoList[MOHR_NAME] + '\n모마번: ' + InfoList[MOHR_NO]\
+                                        + '\n통산 총 출주 횟수: ' + InfoList[RCCNTT]\
+                                        + '\n통산 1착 횟수: ' + InfoList[ORD1CNTT]\
+                                        + '\n통산 2착 횟수: ' + InfoList[ORD2CNTT]\
+                                        + '\n통산 3착 횟수: ' + InfoList[ORD3CNTT]\
+                                        + '\n최근 1년 출주 횟수: ' + InfoList[RCCNTY]\
+                                        + '\n최근 1년 1위 횟수: ' + InfoList[ORD1CNTY]\
+                                        + '\n최근 1년 2위 횟수: ' + InfoList[ORD2CNTY]\
+                                        + '\n최근 1년 3위 횟수: ' + InfoList[ORD3CNTY]\
+                                        + '\n통산 수득 상금: ' + InfoList[CHAKSUNT]                              
 
     def __init__(self):
         self.window = Tk()
