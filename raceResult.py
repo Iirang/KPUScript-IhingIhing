@@ -27,8 +27,7 @@ class raceResult:
 
         if(self.rescode == 200):
             self.response_body = self.response.read()
-            self.tree = ElementTree.fromstring(self.response_body)
-            
+            self.tree = ElementTree.fromstring(self.response_body) 
         else:
             self.isError = True
             print('xml load fail')
