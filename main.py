@@ -2,8 +2,10 @@ from tkinter import *
 import tkinter.ttk
 from tkinter import font
 from Horse import *
+from Owner import *
 from raceResult import *
 from raceHorseInfo import *
+from horseOwnerInfo import *
 from Map import *
 from gmail import *
 
@@ -13,6 +15,9 @@ class MainGUI():
     def Search(self):
         self.HorseInfoList.clear()
         self.HorseInfoList = [Horse() for _ in range(10)] # 말 정보 리스트
+
+        self.OwnerInfoList.clear()
+        self.OwnerInfoList = [Owner() for _ in range(10)] # 마주 정보 리스트
 
         if self.meet.get() == '서울':
             meet = '1'
@@ -38,7 +43,7 @@ class MainGUI():
             for j in range(9):
                 self.HorseInfoList[i].SetInfo(resultInfo[i * 9 + j], j % 9)
 
-        horseInfo = [[0]*15]*10
+        horseInfo = [['']*15]*10
 
         for i in range(10):
             name = self.HorseInfoList[i].GetInfo(HR_NAME)
@@ -51,6 +56,20 @@ class MainGUI():
         for i in range(10):
             for j in range(15):
                 self.HorseInfoList[i].SetInfo(horseInfo[i][j], j % 15 + 9)
+        
+        ownerInfo = [['']*8]*10
+
+        for i in range(10):
+            name = self.HorseInfoList[i].GetInfo(OW_NAME)
+            no = self.HorseInfoList[i].GetInfo(OW_NO)
+
+            self.horseOwnerInfo.setParam(meet, name, no)
+            self.horseOwnerInfo.LoadXML()
+            ownerInfo[i] = self.horseOwnerInfo.LoadhorseOwnerInfo() # 9개
+
+        for i in range(10):
+            for j in range(9):
+                self.OwnerInfoList[i].SetInfo(ownerInfo[i][j], j)
 
     def ShowMap(self):
         if self.meet.get() == '서울':
@@ -66,26 +85,36 @@ class MainGUI():
     def CurSelect(self, evt):   # evt를 사용하지 않더라도, tkinter에서 이벤트를 설명하는 객체를 호출하기 때문에 evt를 매개변수로 추가해야 한다.
         index = self.HorseListbox.index(self.HorseListbox.curselection())
         
-        InfoList = self.HorseInfoList[index].GetInfoList()
+        HorseInfoList = self.HorseInfoList[index].GetInfoList()
+        OwnerInfoList = self.OwnerInfoList[index].GetInfoList()
 
-        self.raceInfoLabel['text']  = '마명: ' + InfoList[HR_NAME] + '\n마번: ' + InfoList[HR_NO]\
-                                    + '\n국적: ' + InfoList[NAME] + '\n나이: ' + InfoList[AGE]\
-                                    + '\n성별: ' + InfoList[SEX]\
-                                    + '\n마주명: ' + InfoList[OW_NAME] + '\n마주번호: ' + InfoList[OW_NO]\
-                                    + '\n순위: ' + InfoList[ORD] + '\n경주기록: ' + InfoList[RC_TIME]
+        self.raceInfoLabel['text']  = '마명: ' + HorseInfoList[HR_NAME] + '\n마번: ' + HorseInfoList[HR_NO]\
+                                    + '\n국적: ' + HorseInfoList[NAME] + '\n나이: ' + HorseInfoList[AGE]\
+                                    + '\n성별: ' + HorseInfoList[SEX]\
+                                    + '\n마주명: ' + HorseInfoList[OW_NAME] + '\n마주번호: ' + HorseInfoList[OW_NO]\
+                                    + '\n순위: ' + HorseInfoList[ORD] + '\n경주기록: ' + HorseInfoList[RC_TIME]
 
-        self.raceHorseInfoLabel['text'] = '생일: ' + InfoList[BIRTHDAY] + '\n등급: ' + InfoList[RANK]\
-                                        + '\n부마명, 번: ' + InfoList[FAHR_NAME] + ', ' + InfoList[FAHR_NO]\
-                                        + '\n모마명, 번: ' + InfoList[MOHR_NAME] + ', ' + InfoList[MOHR_NO]\
-                                        + '\n통산 총 출주 횟수: ' + InfoList[RCCNTT]\
-                                        + '\n통산 1착 횟수: ' + InfoList[ORD1CNTT]\
-                                        + '\n통산 2착 횟수: ' + InfoList[ORD2CNTT]\
-                                        + '\n통산 3착 횟수: ' + InfoList[ORD3CNTT]\
-                                        + '\n최근 1년 출주 횟수: ' + InfoList[RCCNTY]\
-                                        + '\n최근 1년 1위 횟수: ' + InfoList[ORD1CNTY]\
-                                        + '\n최근 1년 2위 횟수: ' + InfoList[ORD2CNTY]\
-                                        + '\n최근 1년 3위 횟수: ' + InfoList[ORD3CNTY]\
-                                        + '\n통산 수득 상금: ' + InfoList[CHAKSUNT]                              
+        self.raceHorseInfoLabel['text'] = '생일: ' + HorseInfoList[BIRTHDAY] + '\n등급: ' + HorseInfoList[RANK]\
+                                        + '\n부마명, 번: ' + HorseInfoList[FAHR_NAME] + ', ' + HorseInfoList[FAHR_NO]\
+                                        + '\n모마명, 번: ' + HorseInfoList[MOHR_NAME] + ', ' + HorseInfoList[MOHR_NO]\
+                                        + '\n통산 총 출주 횟수: ' + HorseInfoList[RCCNTT]\
+                                        + '\n통산 1착 횟수: ' + HorseInfoList[ORD1CNTT]\
+                                        + '\n통산 2착 횟수: ' + HorseInfoList[ORD2CNTT]\
+                                        + '\n통산 3착 횟수: ' + HorseInfoList[ORD3CNTT]\
+                                        + '\n최근 1년 출주 횟수: ' + HorseInfoList[RCCNTY]\
+                                        + '\n최근 1년 1위 횟수: ' + HorseInfoList[ORD1CNTY]\
+                                        + '\n최근 1년 2위 횟수: ' + HorseInfoList[ORD2CNTY]\
+                                        + '\n최근 1년 3위 횟수: ' + HorseInfoList[ORD3CNTY]\
+                                        + '\n통산 수득 상금: ' + HorseInfoList[CHAKSUNT]
+
+        self.horseOwnerInfoLabel['text']    = '마주명: ' + OwnerInfoList[OWNER_NAME] + '\n마주번호: ' + OwnerInfoList[OWNER_NUM]\
+                                            + '\n입사 일자: ' + OwnerInfoList[ST_DATE]\
+                                            + '\n현 보유 두수: '+ OwnerInfoList[OWNERHORSES]\
+                                            + '\n최근 1년 총 출주 횟수: ' + OwnerInfoList[OW_RCCNTY]\
+                                            + '\n최근 1년 1착 횟수: ' + OwnerInfoList[OW_ORD1CNTY]\
+                                            + '\n최근 1년 2착 횟수: ' + OwnerInfoList[OW_ORD2CNTY]\
+                                            + '\n최근 1년 3착 횟수: ' + OwnerInfoList[OW_ORD3CNTY]\
+                                            + '\n최근 1년 착순 상금: ' + OwnerInfoList[CHAKSUNY]                      
 
     def __init__(self):
         self.window = Tk()
@@ -142,7 +171,7 @@ class MainGUI():
         HorseFrame = Frame(self.window, bg='white')
         HorseFrame.pack()
         HorseScrollbar = Scrollbar(HorseFrame, orient=VERTICAL)
-        self.HorseListbox = Listbox(HorseFrame, font= self.font1, height=8, selectmode=SINGLE)  # 선택하면 우측 Listbox에 정보 출력
+        self.HorseListbox = Listbox(HorseFrame, font= self.font1, height=8, selectmode=SINGLE)  # 선택하면 우측 Label에 정보 출력
         self.HorseListbox.pack(side=LEFT)
         HorseScrollbar.pack(side=LEFT, fill=Y)
 
@@ -159,14 +188,19 @@ class MainGUI():
 
         self.raceInfoFrame = Frame(self.window, width=220, height=220, bg='white')
         self.raceHorseInfoFrame = Frame(self.window, width=220, height=220, bg='white')
+        self.horseOwnerInfoFrame = Frame(self.window, width=220, height=220, bg='white')
         self.HorseInfoNotebook.add(self.raceInfoFrame, text='경주기록 정보')
         self.HorseInfoNotebook.add(self.raceHorseInfoFrame, text='경주마 상세정보')
+        self.HorseInfoNotebook.add(self.horseOwnerInfoFrame, text='마주 상세정보')
 
         self.raceInfoLabel = Label(self.raceInfoFrame, bg='white', justify=LEFT, text='경기를 입력하고,\n좌측 리스트에서 말을 선택해주세요.', font=self.font2)
         self.raceInfoLabel.pack(anchor=W)
 
         self.raceHorseInfoLabel = Label(self.raceHorseInfoFrame, bg='white', justify=LEFT, text='경기를 입력하고,\n좌측 리스트에서 말을 선택해주세요.', font=self.font2)
         self.raceHorseInfoLabel.pack(anchor=W)
+
+        self.horseOwnerInfoLabel = Label(self.horseOwnerInfoFrame, bg='white', justify=LEFT, text='경기를 입력하고,\n좌측 리스트에서 말을 선택해주세요.', font=self.font2)
+        self.horseOwnerInfoLabel.pack(anchor=W)
 
         self.canvas = Canvas(HorseFrame, width=220, height=235, bg='white') # 그래프를 출력할 canvas
         self.canvas.pack(padx=(10, 0), side=LEFT)                           # TODO: 승률 비교 그래프 그리는 함수 추가
@@ -183,8 +217,11 @@ class MainGUI():
         Label(DownLogoFrame, image=self.DownLogoImage, height=120, bg='white').pack()
 
         self.HorseInfoList = [] # 말 정보 리스트
+        self.OwnerInfoList = [] # 마주 정보 리스트
+
         self.raceResult = raceResult()  # 경주기록 정보 API
         self.raceHorseInfo = raceHorseInfo()  # 경주마 상세정보 API
+        self.horseOwnerInfo = horseOwnerInfo() # 마주 상세정보 API
 
         self.window.mainloop()
 

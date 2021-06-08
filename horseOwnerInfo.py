@@ -32,20 +32,20 @@ class horseOwnerInfo:
             self.isError = True
             print('xml load fail')
         
-        def LoadhorseOwnerInfo(self):
-            OwnerInfo = []
-            itemElements = self.tree.iter('item')
-            for item in itemElements:
-                owName = item.findtext('owName')
-                owNo = item.findtext('owNo')
-                ownerHorses = item.findtext('ownerHorses')
-                stDate = item.findtext('stDate')
-                rcCntY = item.findtext('rcCntY')
-                ord1CntY = item.findtext('ord1CntY')
-                ord2CntY = item.findtext('ord2CntY')
-                ord3CntY = item.findtext('ord3CntY')
-                chaksunY = item.findtext('chaksunY')
+    def LoadhorseOwnerInfo(self):
+        OwnerInfo = []
+        itemElements = self.tree.iter('item')
+        for item in itemElements:
+            owName = item.findtext('owName')
+            owNo = item.findtext('owNo')
+            ownerHorses = item.findtext('ownerHorses')
+            stDate = item.findtext('stDate')
+            rcCntY = item.findtext('rcCntY')
+            ord1CntY = item.findtext('ord1CntY')
+            ord2CntY = item.findtext('ord2CntY')
+            ord3CntY = item.findtext('ord3CntY')
+            chaksunY = item.findtext('chaksunY')
 
-                OwnerInfo.extend([owName, owNo, ownerHorses, stDate, rcCntY, ord1CntY, ord2CntY, ord3CntY, chaksunY])
-            
-            return OwnerInfo
+            OwnerInfo.extend([owName, owNo, ownerHorses, stDate, rcCntY, ord1CntY, ord2CntY, ord3CntY, chaksunY])
+        
+        return OwnerInfo

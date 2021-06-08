@@ -1,5 +1,5 @@
 # owName: 마주명, owNo: 마주번호
-# ownerHorss: 현 보유 두수
+# ownerHorses: 현 보유 두수
 # stDate: 입사 일자
 # rcCntY: 최근 1년 총 출주 횟수
 # ord1CntY: 최근 1년 1착 횟수
@@ -9,16 +9,17 @@
 
 OWNER_NAME = 0
 OWNER_NUM = 1
-ST_DATE = 2
-OW_RCCNTY = 3
-OW_ORD1CNTY = 4
-OW_ORD2CNTY = 5
-OW_ORD3CNTY = 6
-CHAKSUNY = 7
+OWNERHORSES = 2
+ST_DATE = 3
+OW_RCCNTY = 4
+OW_ORD1CNTY = 5
+OW_ORD2CNTY = 6
+OW_ORD3CNTY = 7
+CHAKSUNY = 8
 
 class Owner:
     def __init__(self):
-        self.InfoList = [''] * 8
+        self.InfoList = [''] * 9
     
     def SetInfo(self, data, index):
         self.InfoList[index] = data
