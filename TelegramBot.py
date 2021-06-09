@@ -4,7 +4,7 @@ from Horse import *
 class TelegramBot:
     def __init__(self):
         self.bot = telepot.Bot(token='1751413623:AAGqoVnH_9OE9sccrNOi1ozES27uWb-xhD0')
-        self.chat_id = 1878240999
+        self.chat_id = 1860711556
 
     def DefaultMessage(self, meet, year, month, date, HorseInfoList):
         message = "[한국마사회X한국산업기술대학교] 요청하신 " + meet + "에서 "\
@@ -22,4 +22,4 @@ class TelegramBot:
                         + '\n순위: ' + HorseInfoList[i].GetInfo(ORD) \
                         + '\n경주기록: ' + HorseInfoList[i].GetInfo(RC_TIME)
 
-        self.bot.sendMessage(chat_id=1878240999, text=message)
+        self.bot.sendMessage(chat_id=1860711556, text=message)

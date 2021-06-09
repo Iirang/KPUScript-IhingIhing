@@ -88,7 +88,7 @@ class MainGUI():
 
         # 보내는 사람의 메일 주소 / 받는 사람의 메일 주소
         senderAddr = "kpuscript2021@gmail.com"
-        recipientAddr = "game2raaaang@kpu.ac.kr"
+        recipientAddr = "meekk0104@naver.com"
 
         # 제목, 내용, 보내는 사람 / 받는 사람
         msg = MIMEMultipart("multipart", "alternative")
@@ -182,15 +182,15 @@ class MainGUI():
             self.canvas.create_rectangle((i*2+1)*barWidth/8+10, height-barHeight*int(HorseInfoList[RCCNTT + i + 4])/rcCntY - 20,
                                         (i*2+2)*barWidth/8, height-20, tags='histogram', outline='red')
             if i == 0:
-                self.canvas.create_text((i*2)*barWidth/8+30, height-10, text='출주 횟수')
+                self.canvas.create_text((i*2)*barWidth/8+30, height-10, text='출주 횟수', tags='histogram')
             else:
-                self.canvas.create_text((i*2)*barWidth/8+30, height-10, text=str(i)+'위')
+                self.canvas.create_text((i*2)*barWidth/8+30, height-10, text=str(i)+'위', tags='histogram')
 
-        self.canvas.create_rectangle(145, 5, 165, 15)
-        self.canvas.create_text(170, 10, text='통산', anchor=W)
+        self.canvas.create_rectangle(145, 5, 165, 15, tags='histogram')
+        self.canvas.create_text(170, 10, text='통산', anchor=W, tags='histogram')
         
-        self.canvas.create_rectangle(145, 20, 165, 30, outline='red')
-        self.canvas.create_text(170, 25, text='최근 1년', anchor=W)
+        self.canvas.create_rectangle(145, 20, 165, 30, outline='red', tags='histogram')
+        self.canvas.create_text(170, 25, text='최근 1년', anchor=W, tags='histogram')
 
     def __init__(self):
         self.window = Tk()
