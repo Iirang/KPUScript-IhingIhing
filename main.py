@@ -8,6 +8,7 @@ from raceHorseInfo import *
 from horseOwnerInfo import *
 from Map import *
 from gmail import *
+import telegram
 import spam
 
 class MainGUI():
@@ -123,6 +124,13 @@ class MainGUI():
         s.login("kpuscript2021@gmail.com", "tmzmflqxmdjsdj2021")
         s.sendmail(senderAddr, [recipientAddr], msg.as_string())
         s.close()
+
+    def SendTelegram(self):
+        bot = telegram.Bot(token='1751413623:AAGqoVnH_9OE9sccrNOi1ozES27uWb-xhD0')
+        chat_id = 1878240999
+
+        bot.sendMessage(chat_id=1878240999, text="[한국마사회X한국산업기술대학교] 요청하신 " + self.meet.get() + "에서 "\
+                         + self.year.get() + "년 " + self.month.get() + "월 " + self.date.get() + "일 진행한 경기의 정보를 보내드립니다.")
     
     def CurSelect(self, evt):   # evt를 사용하지 않더라도, tkinter에서 이벤트를 설명하는 객체를 호출하기 때문에 evt를 매개변수로 추가해야 한다.
         index = self.HorseListbox.index(self.HorseListbox.curselection())
@@ -275,7 +283,7 @@ class MainGUI():
 
         ButtonFrame = Frame(self.window, bg='white')
         ButtonFrame.pack()
-        Button(ButtonFrame, text='텔레그램', font=self.font1).pack(padx=(590, 0), side=LEFT) # TODO: 텔레그램 봇 연동
+        Button(ButtonFrame, text='텔레그램', command=self.SendTelegram(), font=self.font1).pack(padx=(590, 0), side=LEFT) # TODO: 텔레그램 봇 연동
         Button(ButtonFrame, text='Gmail', command=self.SendMail, font=self.font1).pack(padx=(10, 0), side=LEFT)
 
         # 아래 칸 로고
