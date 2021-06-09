@@ -7,7 +7,7 @@ import smtplib
 from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from main import *
+
 
 def GetMail():
     #global value
@@ -20,7 +20,7 @@ def GetMail():
 
     # 제목, 내용, 보내는 사람 / 받는 사람
     msg = MIMEMultipart("multipart", "alternative")
-    msg['Subject'] = "[한국마사회X한국산업기술대학교] 요청하신" + " 정보를 보내드립니다."
+    msg['Subject'] = "[한국마사회X한국산업기술대학교] 요청하신" + self.meet.get() + "에서 진행한 경기의" + " 정보를 보내드립니다."
     msg['From'] = senderAddr
     msg['To'] = recipientAddr
 
