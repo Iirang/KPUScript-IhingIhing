@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+# ID: kpuscript2021@gmail.com
+# PW: 스크립트언어2021
+
 from tkinter import *
 import tkinter.ttk
 from tkinter import font
@@ -7,12 +11,10 @@ from raceResult import *
 from raceHorseInfo import *
 from horseOwnerInfo import *
 from Map import *
-from gmail import *
-import telegram
+from TelegramBot import *
 import spam
 
 class MainGUI():
-
     def Search(self):
         self.HorseInfoList.clear()
         self.HorseInfoList = [Horse() for _ in range(10)] # 말 정보 리스트
@@ -76,7 +78,11 @@ class MainGUI():
             Busan()
 
     def SendMail(self):
-
+        import mimetypes
+        import smtplib
+        from email.mime.base import MIMEBase
+        from email.mime.text import MIMEText
+        from email.mime.multipart import MIMEMultipart
         host = "smtp.gmail.com"  # Gmail STMP  서버 주소.
         port = "587"
 
@@ -126,11 +132,7 @@ class MainGUI():
         s.close()
 
     def SendTelegram(self):
-        bot = telegram.Bot(token='1751413623:AAGqoVnH_9OE9sccrNOi1ozES27uWb-xhD0')
-        chat_id = 1878240999
-
-        bot.sendMessage(chat_id=1878240999, text="[한국마사회X한국산업기술대학교] 요청하신 " + self.meet.get() + "에서 "\
-                         + self.year.get() + "년 " + self.month.get() + "월 " + self.date.get() + "일 진행한 경기의 정보를 보내드립니다.")
+        self.TelegramBot.DefaultMessage(self.meet.get(), self.year.get(), self.month.get(), self.date.get(), self.HorseInfoList)
     
     def CurSelect(self, evt):   # evt를 사용하지 않더라도, tkinter에서 이벤트를 설명하는 객체를 호출하기 때문에 evt를 매개변수로 추가해야 한다.
         index = self.HorseListbox.index(self.HorseListbox.curselection())
@@ -298,6 +300,8 @@ class MainGUI():
         self.raceResult = raceResult()  # 경주기록 정보 API
         self.raceHorseInfo = raceHorseInfo()  # 경주마 상세정보 API
         self.horseOwnerInfo = horseOwnerInfo() # 마주 상세정보 API
+
+        self.TelegramBot = TelegramBot()
 
         self.window.mainloop()
 
