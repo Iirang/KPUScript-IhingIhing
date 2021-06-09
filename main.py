@@ -158,6 +158,26 @@ class MainGUI():
                                             + '\n최근 1년 3착 횟수: ' + OwnerInfoList[OW_ORD3CNTY]\
                                             + '\n최근 1년 착순 상금: ' + OwnerInfoList[CHAKSUNY]                      
 
+        width = int(self.canvas['width'])
+        height = int(self.canvas['height'])
+        rcCntT = int(HorseInfoList[RCCNTT])
+        rcCntY = int(HorseInfoList[RCCNTY])
+        barHeight = height * 0.75
+        barWidth = width - 20
+
+        # RCCNTT = 15
+        # ORD1CNTT = 16
+        # ORD2CNTT = 17
+        # ORD3CNTT = 18
+        # RCCNTY = 19
+        # ORD1CNTY = 20 
+        # ORD2CNTY = 21
+        # ORD3CNTY = 22
+        self.canvas.delete('histogram')
+        for i in range(15, 19, 1):
+            self.canvas.create_rectangle((i-15)*barWidth/8+10, height-barHeight*int(HorseInfoList[i])/rcCntT - 20,
+                                        (i-15+1)*barWidth/8, height-20, tags='histogram')
+
     def __init__(self):
         self.window = Tk()
         self.window.title("경마 정보 어플리케이션 - 이힝이힝")
