@@ -91,12 +91,11 @@ class MainGUI():
         msg['To'] = recipientAddr
 
         # HTML문서 생성
-        RaceInfo = '<B>' + self.year.get() + "년 " + self.month.get() + "월 " \
-                   + self.date.get() + "일에 진행한 경기 정보를 보내드립니다.<p></B>"
+        RaceInfo = self.year.get() + "년 " + self.month.get() + "월 " + self.date.get() + "일에 진행한 경기 정보를 보내드립니다.<p>"
         HorseInfo = ''
 
         for i in range(10):
-            HorseInfo += '<br><B>' + self.HorseInfoList[i].GetInfo(ORD) + '순위 말의 정보입니다</B><br>'\
+            HorseInfo += '<br><B>' + self.HorseInfoList[i].GetInfo(ORD) + '순위 말의 정보입니다</B>'\
                         + '<br>마명: ' + self.HorseInfoList[i].GetInfo(HR_NAME) \
                         + '<br>마번: ' + self.HorseInfoList[i].GetInfo(HR_NO) \
                         + '<br>국적: ' + self.HorseInfoList[i].GetInfo(NAME) \
