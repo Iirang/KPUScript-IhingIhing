@@ -283,7 +283,7 @@ class MainGUI():
 
         ButtonFrame = Frame(self.window, bg='white')
         ButtonFrame.pack()
-        Button(ButtonFrame, text='텔레그램', command=self.SendTelegram(), font=self.font1).pack(padx=(590, 0), side=LEFT) # TODO: 텔레그램 봇 연동
+        Button(ButtonFrame, text='텔레그램', command=self.SendTelegram, font=self.font1).pack(padx=(590, 0), side=LEFT) # TODO: 텔레그램 봇 연동
         Button(ButtonFrame, text='Gmail', command=self.SendMail, font=self.font1).pack(padx=(10, 0), side=LEFT)
 
         # 아래 칸 로고
