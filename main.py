@@ -165,14 +165,6 @@ class MainGUI():
         barHeight = height * 0.75
         barWidth = width - 20
 
-        # RCCNTT = 15
-        # ORD1CNTT = 16
-        # ORD2CNTT = 17
-        # ORD3CNTT = 18
-        # RCCNTY = 19
-        # ORD1CNTY = 20 
-        # ORD2CNTY = 21
-        # ORD3CNTY = 22
         self.canvas.delete('histogram')
         for i in range(4):
             self.canvas.create_rectangle((i*2)*barWidth/8+10, height-barHeight*int(HorseInfoList[RCCNTT + i])/rcCntT - 20,
@@ -183,6 +175,12 @@ class MainGUI():
                 self.canvas.create_text((i*2)*barWidth/8+30, height-10, text='출주 횟수')
             else:
                 self.canvas.create_text((i*2)*barWidth/8+30, height-10, text=str(i)+'위')
+
+        self.canvas.create_rectangle(145, 5, 165, 15)
+        self.canvas.create_text(170, 10, text='통산', anchor=W)
+        
+        self.canvas.create_rectangle(145, 20, 165, 30, outline='red')
+        self.canvas.create_text(170, 25, text='최근 1년', anchor=W)
 
     def __init__(self):
         self.window = Tk()
