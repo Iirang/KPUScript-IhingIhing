@@ -174,9 +174,15 @@ class MainGUI():
         # ORD2CNTY = 21
         # ORD3CNTY = 22
         self.canvas.delete('histogram')
-        for i in range(15, 19, 1):
-            self.canvas.create_rectangle((i-15)*barWidth/8+10, height-barHeight*int(HorseInfoList[i])/rcCntT - 20,
-                                        (i-15+1)*barWidth/8, height-20, tags='histogram')
+        for i in range(4):
+            self.canvas.create_rectangle((i*2)*barWidth/8+10, height-barHeight*int(HorseInfoList[RCCNTT + i])/rcCntT - 20,
+                                        (i*2+1)*barWidth/8, height-20, tags='histogram')
+            self.canvas.create_rectangle((i*2+1)*barWidth/8+10, height-barHeight*int(HorseInfoList[RCCNTT + i + 4])/rcCntY - 20,
+                                        (i*2+2)*barWidth/8, height-20, tags='histogram', outline='red')
+            if i == 0:
+                self.canvas.create_text((i*2)*barWidth/8+30, height-10, text='출주 횟수')
+            else:
+                self.canvas.create_text((i*2)*barWidth/8+30, height-10, text=str(i)+'위')
 
     def __init__(self):
         self.window = Tk()
