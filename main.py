@@ -225,8 +225,10 @@ class MainGUI():
             self.SearchEntry[i].pack(padx=(10, 0), side=LEFT)
             self.SearchLabel[i].pack(padx=(10, 0), side=LEFT)
 
+        MapButtonImage = PhotoImage(file='Resource/Map.png')
+
         Button(SearchFrame, text='검색', command=self.Search, font=self.font1).pack(padx=(10, 0), side=LEFT)
-        Button(SearchFrame, text='지도', command=self.ShowMap, font=self.font1).pack(padx=(10, 0), side=LEFT)  # TODO: text 없애고, 지도 이미지 추가
+        Button(SearchFrame, text='지도', command=self.ShowMap, font=self.font1, image=MapButtonImage).pack(padx=(10, 0), side=LEFT)  # TODO: text 없애고, 지도 이미지 추가
 
         OutputFrame = Frame(self.window, height=50, bg='white')    # 보여줄 것: 지역, 날짜, 날씨, 주로 상태(건조주로(1% ~ 5%) , 양호주로(6% ~ 9%), 다습주로(10% ~ 14%), 포화주로(15% ~ 19%), 불량주로(20% 이상))
         OutputFrame.pack()
@@ -269,12 +271,12 @@ class MainGUI():
         self.horseOwnerInfoLabel.pack(anchor=W)
 
         self.canvas = Canvas(HorseFrame, width=220, height=235, bg='white') # 그래프를 출력할 canvas
-        self.canvas.pack(padx=(10, 0), side=LEFT)                           # TODO: 승률 비교 그래프 그리는 함수 추가
+        self.canvas.pack(padx=(10, 0), side=LEFT)                          
 
         ButtonFrame = Frame(self.window, bg='white')
         ButtonFrame.pack()
         Button(ButtonFrame, text='텔레그램', font=self.font1).pack(padx=(590, 0), side=LEFT) # TODO: 텔레그램 봇 연동
-        Button(ButtonFrame, text='Gmail', command=self.SendMail, font=self.font1).pack(padx=(10, 0), side=LEFT) # TODO: Gmail 연동
+        Button(ButtonFrame, text='Gmail', command=self.SendMail, font=self.font1).pack(padx=(10, 0), side=LEFT)
 
         # 아래 칸 로고
         self.DownLogoImage = PhotoImage(file='Resource/Logo_Down_a.gif')
