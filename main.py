@@ -8,7 +8,7 @@ from raceHorseInfo import *
 from horseOwnerInfo import *
 from Map import *
 from gmail import *
-
+import spam
 
 class MainGUI():
 
@@ -19,12 +19,7 @@ class MainGUI():
         self.OwnerInfoList.clear()
         self.OwnerInfoList = [Owner() for _ in range(10)] # 마주 정보 리스트
 
-        if self.meet.get() == '서울':
-            meet = '1'
-        elif self.meet.get() == '제주':
-            meet = '2'
-        elif self.meet.get() == '부산' or self.meet.get() == '부산경남':
-            meet = '3'
+        meet = spam.GetRegionNum(self.meet.get())
         
         month = self.month.get().rjust(2, '0')
         date = self.date.get().rjust(2, '0')
